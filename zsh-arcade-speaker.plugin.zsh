@@ -162,7 +162,9 @@ add-zsh-hook precmd _zarcade_precmd_hook
 
 # --- Native Zsh Autocomplete Definition Profile ---
 _zarcade_autocomplete_profile() {
-    local line
+    local context state state_descr line
+    typeset -A opt_args
+
     _arguments -C \
         '1:cmd:->cmds' \
         '2:subcmd:->subcmds'
@@ -182,6 +184,6 @@ _zarcade_autocomplete_profile() {
                     ;;
             esac
             ;;
-    case esac
+    esac
 }
 compdef _zarcade_autocomplete_profile zarcade
