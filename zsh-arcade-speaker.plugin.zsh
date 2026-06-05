@@ -89,7 +89,7 @@ _zarcade_menu_success() {
     _zarcade_save; _zarcade_sound_success
 }
 
-..._zarcade_menu_error() {
+_zarcade_menu_error() {
     clear
     echo " 🚨 ZARCADE: SELECT FAILURE ERROR"
     echo "=========================================================="
