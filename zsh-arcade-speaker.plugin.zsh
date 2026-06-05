@@ -56,7 +56,7 @@ _zarcade_save() {
 # --- Interactive UI Menus ---
 _zarcade_menu_success() {
     clear
-    echo " 🎵 ZARCADE: SELECT SUCCESS CHIME"
+    echo "ZARCADE: SELECT SUCCESS CHIME"
     echo "=========================================================="
     echo " Current: [ $SHELL_TONE ]"
     echo "=========================================================="
@@ -91,7 +91,7 @@ _zarcade_menu_success() {
 
 _zarcade_menu_error() {
     clear
-    echo " 🚨 ZARCADE: SELECT FAILURE ERROR"
+    echo "ZARCADE: SELECT FAILURE ERROR"
     echo "=========================================================="
     echo " Current: [ $SHELL_ERROR ]"
     echo "=========================================================="
