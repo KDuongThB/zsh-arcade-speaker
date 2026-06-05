@@ -129,4 +129,4 @@ Have you mapped out the exact frequencies for another classic video game theme o
 
 Let's keep the motherboards singing. 🕹️
 
-*Made at 4:20 AM, depressed, withdrawing from Effexor, and sleepless for 26 hours btw :broken-heart-emoji:*
+*Made at 4:20 AM, depressed, withdrawing from Effexor, and sleepless for 26 hours btw :broken-heart-emoji:. Also, thanks Gemini*
