@@ -1,5 +1,5 @@
 # ==============================================================================
-#  🕹️  ZSH PACKAGE: ZSH-ARCADE-SPEAKER
+#  ZSH PACKAGE: ZSH-ARCADE-SPEAKER
 #  Compatible with: Oh My Zsh, Antigen, Zplug, Homebrew, & Manual Git Clones.
 # ==============================================================================
 
