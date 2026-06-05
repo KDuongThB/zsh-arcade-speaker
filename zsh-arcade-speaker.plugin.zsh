@@ -1,0 +1,187 @@
+# ==============================================================================
+#  🕹️  ZSH PACKAGE: ZSH-ARCADE-SPEAKER
+#  Compatible with: Oh My Zsh, Antigen, Zplug, Homebrew, & Manual Git Clones.
+# ==============================================================================
+
+# --- Dynamic Path Extraction Matrix ---
+# Finds the exact install directory regardless of the plugin manager infrastructure
+  ZARCADE_DIR="${0:A:h}"
+if [[ "$ZARCADE_DIR" == "." ]]; then
+    ZARCADE_DIR="$HOME/.oh-my-zsh/custom/plugins/zsh-arcade-speaker"
+fi
+
+# --- Persistent Core Configuration State ---
+export SHELL_TONE="${SHELL_TONE:-single_coin}"
+export SHELL_ERROR="${SHELL_ERROR:-windows_error}"
+
+# --- Sound Library Engine ---
+_zarcade_sound_success() {
+    case "$SHELL_TONE" in
+        single_coin) beep -f 987.77 -l 50 -d 5 -n -f 1318.51 -l 320 ;;
+        messenger)   beep -f 1046.50 -l 65 -d 25 -n -f 1396.91 -l 140 ;;
+        mac_pass)    beep -f 739.99 -l 60 -d 20 -n -f 1109.73 -l 120 ;;
+        scifi)       beep -f 1567.98 -l 40 -d 10 -n -f 1975.53 -l 40 -d 10 -n -f 2349.32 -l 60 ;;
+        mgs)         beep -f 1975.53 -l 70 -d 10 -n -f 1975.53 -l 150 ;;
+        slack)       beep -f 880.00 -l 50 -d 20 -n -f 783.99 -l 50 ;;
+        zelda)       beep -f 1174.66 -l 70 -d 10 -n -f 1244.51 -l 70 -d 10 -n -f 1318.51 -l 70 -d 10 -n -f 1396.91 -l 250 ;;
+        trek)        beep -f 1750.00 -l 40 -d 5 -n -f 2100.00 -l 50 ;;
+        mario_coin)  beep -f 987.77 -l 50 -d 5 -n -f 1318.51 -l 320 -d 140 -n -f 987.77 -l 50 -d 5 -n -f 1318.51 -l 320 -d 140 -n -f 987.77 -l 50 -d 5 -n -f 1318.51 -l 350 ;;
+        nokia)       beep -f 1318.51 -l 180 -d 30 -n -f 1174.66 -l 180 -d 30 -n -f 739.99 -l 360 -d 30 -n -f 880.00 -l 360 -d 30 -n -f 1109.73 -l 180 -d 30 -n -f 987.77 -l 180 -d 30 -n -f 587.33 -l 360 -d 30 -n -f 659.25 -l 360 -d 30 -n -f 987.77 -l 180 -d 30 -n -f 880.00 -l 180 -d 30 -n -f 554.37 -l 360 -d 30 -n -f 659.25 -l 360 -d 30 -n -f 880.00 -l 500 ;;
+        arabic)      beep -f 783.99 -l 220 -d 30 -n -f 880.00 -l 220 -d 30 -n -f 987.77 -l 450 -d 40 -n -f 987.77 -l 220 -d 30 -n -f 880.00 -l 220 -d 30 -n -f 783.99 -l 450 -d 40 -n -f 783.99 -l 220 -d 30 -n -f 880.00 -l 220 -d 30 -n -f 987.77 -l 450 -d 40 -n -f 987.77 -l 450 -d 30 -n -f 1174.66 -l 450 -d 40 -n -f 880.00 -l 220 -d 30 -n -f 987.77 -l 220 -d 30 -n -f 1046.50 -l 450 -d 40 -n -f 1046.50 -l 220 -d 30 -n -f 987.77 -l 220 -d 30 -n -f 880.00 -l 450 -d 40 -n -f 880.00 -l 220 -d 30 -n -f 987.77 -l 220 -d 30 -n -f 1046.50 -l 450 -d 40 -n -f 1046.50 -l 450 -d 30 -n -f 1318.51 -l 700 ;;
+        samsung)     beep -f 659.25 -l 250 -d 40 -n -f 783.99 -l 250 -d 40 -n -f 1174.66 -l 380 -d 40 -n -f 987.77 -l 380 -d 40 -n -f 880.00 -l 250 -d 40 -n -f 987.77 -l 750 ;;
+    esac
+}
+
+_zarcade_sound_error() {
+    case "$SHELL_ERROR" in
+        windows_error) beep -f 150.00 -l 150 ;;
+        classic_buzz)  beep -f 220.00 -l 80 -d 20 -n -f 220.00 -l 200 ;;
+        mario_damage)  beep -f 392.00 -l 50 -d 10 -n -f 293.66 -l 50 -d 10 -n -f 196.00 -l 120 ;;
+        pokemon_bump)  beep -f 130.00 -l 60 ;;
+        denied_blip)   beep -f 880.00 -l 40 -d 10 -n -f 440.00 -l 60 ;;
+        trombone)      beep -f 440.00 -l 250 -d 40 -n -f 415.30 -l 250 -d 40 -n -f 392.00 -l 250 -d 40 -n -f 311.13 -l 700 ;;
+        pacman)        for i in {800..200..-30}; do beep -f $i -l 20; done && beep -f 150.00 -l 200 -d 20 -n -f 100.00 -l 300 ;;
+    esac
+}
+
+# --- State Mutator Serialization ---
+_zarcade_save() {
+    local target="$ZARCADE_DIR/zsh-arcade-speaker.plugin.zsh"
+    if [ -f "$target" ]; then
+        sed -i "s/^export SHELL_TONE=.*/export SHELL_TONE=\"$SHELL_TONE\"/" "$target" 2>/dev/null
+        sed -i "s/^export SHELL_ERROR=.*/export SHELL_ERROR=\"$SHELL_ERROR\"/" "$target" 2>/dev/null
+    fi
+}
+
+# --- Interactive UI Menus ---
+_zarcade_menu_success() {
+    clear
+    echo " 🎵 ZARCADE: SELECT SUCCESS CHIME"
+    echo "=========================================================="
+    echo " Current: [ $SHELL_TONE ]"
+    echo "=========================================================="
+    echo " [1] Single Mario Coin       [5] MGS ! Alert Pop"
+    echo " [2] FB Messenger Ping       [6] Slack Bubble Pop"
+    echo " [3] MacOS Success Tap       [7] Zelda Small Item"
+    echo " [4] Sci-Fi Triple Blip      [8] Star Trek Chirp"
+    echo " [9] Mario Triple Coin Loop  [a] Nokia Arabic Theme"
+    echo " [0] Nokia Classic Ring      [b] Samsung Horizon Chime"
+    echo " [m] MUTE SUCCESS TONES"
+    echo "=========================================================="
+    echo -n " Select target option -> "
+    read -k 1 choice; echo ""
+    case $choice in
+        1) export SHELL_TONE="single_coin" ;;
+        2) export SHELL_TONE="messenger" ;;
+        3) export SHELL_TONE="mac_pass" ;;
+        4) export SHELL_TONE="scifi" ;;
+        5) export SHELL_TONE="mgs" ;;
+        6) export SHELL_TONE="slack" ;;
+        7) export SHELL_TONE="zelda" ;;
+        8) export SHELL_TONE="trek" ;;
+        9) export SHELL_TONE="mario_coin" ;;
+        0) export SHELL_TONE="nokia" ;;
+        a) export SHELL_TONE="arabic" ;;
+        b) export SHELL_TONE="samsung" ;;
+        m) export SHELL_TONE="none" ;;
+        *) echo "Aborted."; return 1 ;;
+    esac
+    _zarcade_save; _zarcade_sound_success
+}
+
+..._zarcade_menu_error() {
+    clear
+    echo " 🚨 ZARCADE: SELECT FAILURE ERROR"
+    echo "=========================================================="
+    echo " Current: [ $SHELL_ERROR ]"
+    echo "=========================================================="
+    echo " [1] Windows Error Thud      [5] Access Denied Chirp"
+    echo " [2] Game Show Wrong Buzz    [6] Sad Trombone"
+    echo " [3] Mario Damage Shrink     [7] Pacman Death Sequence"
+    echo " [4] Gameboy Pokemon Bump"
+    echo " [m] MUTE ERROR TONES"
+    echo "=========================================================="
+    echo -n " Select target option -> "
+    read -k 1 choice; echo ""
+    case $choice in
+        1) export SHELL_ERROR="windows_error" ;;
+        2) export SHELL_ERROR="classic_buzz" ;;
+        3) export SHELL_ERROR="mario_damage" ;;
+        4) export SHELL_ERROR="pokemon_bump" ;;
+        5) export SHELL_ERROR="denied_blip" ;;
+        6) export SHELL_ERROR="trombone" ;;
+        7) export SHELL_ERROR="pacman" ;;
+        m) export SHELL_ERROR="none" ;;
+        *) echo "Aborted."; return 1 ;;
+    esac
+    _zarcade_save; _zarcade_sound_error
+}
+
+# --- Consolidated Public Binary/Command ---
+zarcade() {
+    local sub1=$1
+    local sub2=$2
+
+    if [[ "$sub1" == "set" && "$sub2" == "success" ]]; then
+        _zarcade_menu_success
+    elif [[ "$sub1" == "set" && "$sub2" == "error" ]]; then
+        _zarcade_menu_error
+    elif [[ "$sub1" == "status" ]]; then
+        echo "zarcade deployment environment metrics:"
+        echo " - Success Profile: $SHELL_TONE"
+        echo " - Error Profile:   $SHELL_ERROR"
+        echo " - Install Engine:  $ZARCADE_DIR"
+    else
+        echo "Usage: zarcade [command]"
+        echo "Available Options:"
+        echo "  zarcade set success  - Opens configuration menu for pass sounds"
+        echo "  zarcade set error    - Opens configuration menu for failure sounds"
+        echo "  zarcade status       - Outputs active configuration metadata"
+    fi
+}
+
+# --- Core Hook Execution Handler ---
+_zarcade_precmd_hook() {
+    local last_status=$?
+    # Prevent infinite sound feedback loops inside management cli tools
+    local last_cmd=$(fc -ln -1 2>/dev/null | awk '{print $1}')
+    if [[ "$last_cmd" == "clear" || "$last_cmd" == "zarcade" ]]; then
+        return
+    fi
+
+    if [ $last_status -eq 0 ]; then
+        _zarcade_sound_success
+    else
+        _zarcade_sound_error
+    fi
+}
+
+# --- Initialize Pipeline Structural Hooks ---
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _zarcade_precmd_hook
+
+# --- Native Zsh Autocomplete Definition Profile ---
+_zarcade_autocomplete_profile() {
+    local line
+    _arguments -C \
+        '1:cmd:->cmds' \
+        '2:subcmd:->subcmds'
+    
+    case "$state" in
+        cmds)
+            _values "zarcade commands" \
+                'set[Adjust audio runtime environments]' \
+                'status[View active configuration metadata]'
+            ;;
+        subcmds)
+            case "$words[2]" in
+                set)
+                    _values "targets" \
+                        'success[Open the success tone soundboard]' \
+                        'error[Open the failure error soundboard]'
+                    ;;
+            esac
+            ;;
+    case esac
+}
+compdef _zarcade_autocomplete_profile zarcade
