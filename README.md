@@ -73,7 +73,7 @@ and comment out the lines where there are `snd_pcsp` and `pcspkr`. Reboot your m
 ### 1. Oh My Zsh
 Clone this repository straight into your custom plugin index:
 ```bash
-git clone [https://github.com/yourusername/zsh-arcade-speaker.git](https://github.com/yourusername/zsh-arcade-speaker.git) $ZSH_CUSTOM/plugins/zsh-arcade-speaker
+git clone [https://github.com/kduongthb/zsh-arcade-speaker.git](https://github.com/kduongthb/zsh-arcade-speaker.git) $ZSH_CUSTOM/plugins/zsh-arcade-speaker
 ```
 
 Activate it inside your central active array inside ~/.zshrc:
